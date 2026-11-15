@@ -12,40 +12,37 @@ const wordBank = {
   BERRY: "A small juicy fruit.",
   LEMON: "A sour yellow citrus fruit.",
   MELON: "A large juicy fruit with a thick rind.",
-  OLIVE: "A small fruit often used to make oil.",
   BREAD: "A food made from flour.",
   PIZZA: "A round dish topped with cheese and sauce.",
   PASTA: "An Italian food made from wheat.",
   HONEY: "A sweet substance made by bees.",
   SUGAR: "A sweet ingredient used in desserts.",
   SALAD: "A dish usually made with vegetables.",
-  JUICE: "A drink made from fruits or vegetables.",
+  JUICE: "A drink made from fruits.",
   WATER: "A liquid essential for life.",
   CHAIR: "Something you sit on.",
   TABLE: "Furniture with a flat surface and legs.",
   CLOCK: "Something used to tell time.",
   HOUSE: "A building where people live.",
   HOTEL: "A place where travelers stay.",
-  PHONE: "A device used to communicate with people.",
+  PHONE: "A device used to communicate.",
   RADIO: "A device used to listen to broadcasts.",
   WATCH: "Something worn on the wrist to tell time.",
   GLASS: "A material used for windows and cups.",
   SHELF: "A flat surface used for storing things.",
-  KNIFE: "A tool used for cutting.",
   PLATE: "Something used to serve food.",
   SPOON: "A utensil used for eating soup.",
   BRUSH: "An object used for cleaning or styling.",
-  PAPER: "A material used for writing and printing.",
+  PAPER: "A material used for writing.",
   LIGHT: "Something that allows you to see.",
-  HEART: "The organ that pumps blood around the body.",
+  HEART: "The organ that pumps blood.",
   BRAIN: "The organ responsible for thinking.",
-  BLOOD: "The red liquid that flows through your body.",
-  TEETH: "Hard structures used for biting and chewing.",
+  TEETH: "Hard structures used for chewing.",
   SMILE: "An expression that shows happiness.",
   HAPPY: "Feeling joy or pleasure.",
   ANGRY: "Feeling strong displeasure.",
-  SLEEP: "The state of resting at night.",
-  DREAM: "Images and experiences you have while sleeping.",
+  SLEEP: "The state of resting.",
+  DREAM: "Images and experiences during sleep.",
   LAUGH: "To make sounds when something is funny.",
   MUSIC: "Sounds arranged in a pleasant way.",
   DANCE: "Moving your body to music.",
@@ -53,54 +50,51 @@ const wordBank = {
   ZEBRA: "An animal with black and white stripes.",
   HORSE: "An animal often used for riding.",
   SNAKE: "A long reptile with no legs.",
-  EAGLE: "A large bird known for its sharp eyesight.",
+  EAGLE: "A large bird known for sharp eyesight.",
   SHARK: "A large fish with sharp teeth.",
   WHALE: "A huge marine mammal.",
   SNAIL: "A slow-moving animal with a shell.",
   MOUSE: "A small rodent with a long tail.",
   SHEEP: "A farm animal that produces wool.",
-  CLOWN: "A performer who entertains people with funny acts.",
   QUEEN: "A female ruler of a kingdom.",
   CROWN: "A special headpiece worn by royalty.",
-  GHOST: "A spirit in many spooky stories.",
+  GHOST: "A spirit in spooky stories.",
   ANGEL: "A spiritual being often shown with wings.",
   MAGIC: "An extraordinary power used in fantasy.",
-  ROBOT: "A machine that can perform tasks automatically.",
+  ROBOT: "A machine that can perform tasks.",
   ALIEN: "A being believed to come from another planet.",
   WORLD: "The planet where humans live.",
   EARTH: "The planet we live on.",
   OCEAN: "A very large body of salt water.",
   RIVER: "A natural stream of flowing water.",
-  CLOUD: "A mass of water droplets floating in the sky.",
+  CLOUD: "A mass of water droplets in the sky.",
   STORM: "Severe weather with strong winds and rain.",
   FLAME: "The visible part of a fire.",
   STONE: "A small piece of rock.",
   GRASS: "A green plant that covers many lawns.",
   PLANT: "A living thing that grows in soil.",
-  BEACH: "A sandy or rocky area beside the sea.",
+  BEACH: "A sandy area beside the sea.",
   SPACE: "The vast area beyond Earth's atmosphere.",
   MOON: "The natural satellite of Earth.",
   NIGHT: "The dark part of the day.",
   TRAIN: "A vehicle that runs on railway tracks.",
   PLANE: "A vehicle that flies through the sky.",
   TRUCK: "A large vehicle used for carrying goods.",
-  SHIP: "A large vessel that travels on water.",
-  MOTOR: "A machine that produces movement.",
   PILOT: "A person trained to fly an aircraft.",
   CLASS: "A group of students learning together.",
   STUDY: "The act of learning about a subject.",
-  TEACH: "To help someone learn something.",
+  TEACH: "To help someone learn.",
   LEARN: "To gain knowledge or a new skill.",
   GRADE: "A mark showing academic performance.",
   WRITE: "To form letters or words.",
   DRAW: "To create a picture using lines.",
   PAINT: "To apply color to a surface.",
-  SPORT: "A physical activity involving skill or competition.",
-  GAMES: "Activities played for fun or competition.",
-  SCORE: "The number of points earned in a game.",
+  SPORT: "A physical activity involving skill.",
+  GAMES: "Activities played for fun.",
+  SCORE: "The number of points earned.",
   MATCH: "A contest between players or teams.",
   COURT: "An area where certain sports are played.",
-  BRAVE: "Showing courage when facing difficulty.",
+  BRAVE: "Showing courage.",
   SMART: "Having the ability to learn and understand.",
   QUICK: "Moving or happening very fast.",
   QUIET: "Making little or no noise.",
@@ -109,26 +103,23 @@ const wordBank = {
   FRESH: "Recently made or obtained.",
   CLEAN: "Free from dirt or mess.",
   DIRTY: "Covered with dirt or stains.",
-  STRONG: "Having great physical or mental power.",
+  STRONG: "Having great power.",
   WEAK: "Lacking strength or power.",
-  CHILD: "A young human being.",
   HUMAN: "A person belonging to the human species.",
   FRIEND: "Someone you know and trust.",
   TRUST: "Belief that someone is reliable.",
   PEACE: "A state without war or conflict.",
-  PRIDE: "A feeling of satisfaction in achievements.",
-  FAITH: "Strong belief or trust in something.",
   TRUTH: "Something that is real or correct.",
   MONEY: "Something used to buy goods and services.",
-  PRICE: "The amount of money needed to buy something.",
+  PRICE: "The amount needed to buy something.",
   STORE: "A place where products are sold.",
   OWNER: "A person who possesses something.",
   BUYER: "A person who purchases something.",
   PARTY: "A social gathering for celebration.",
   EVENT: "Something important that happens.",
   MOVIE: "A story shown through moving pictures.",
-  ACTOR: "A person who performs in films or plays.",
-  STORY: "An account of events, real or imaginary.",
+  ACTOR: "A person who performs in films.",
+  STORY: "An account of events.",
   NOVEL: "A long fictional written story.",
   TITLE: "The name given to a book or work.",
   VIDEO: "A recording of moving images.",
@@ -138,10 +129,10 @@ const wordBank = {
   WHITE: "The color of fresh snow.",
   GREEN: "The color commonly associated with leaves.",
   BROWN: "A color often seen in soil and wood.",
-  ROUND: "Having the shape of a circle or sphere.",
-  SHARP: "Having an edge or point that can cut.",
+  ROUND: "Having the shape of a circle.",
+  SHARP: "Having an edge or point.",
   ROUGH: "Having an uneven surface.",
-  SMOOTH: "Having an even and soft surface.",
+  SMOOTH: "Having an even surface.",
   EMPTY: "Containing nothing.",
   LARGE: "Big in size.",
   SMALL: "Little in size.",
@@ -150,9 +141,9 @@ const wordBank = {
   LATER: "Happening after the present time.",
   TODAY: "The current day.",
   MONTH: "A period of time in a calendar year.",
-  SEVEN: "The number that comes after six.",
-  THREE: "The number that comes after two.",
-  EIGHT: "The number that comes after seven.",
+  SEVEN: "The number after six.",
+  THREE: "The number after two.",
+  EIGHT: "The number after seven.",
   FIRST: "Coming before all others.",
   THIRD: "Coming after second.",
   FIFTH: "Coming after fourth.",
@@ -163,10 +154,10 @@ const wordBank = {
   BREAK: "To separate something into pieces.",
   THROW: "To send something through the air.",
   CATCH: "To grab something moving through the air.",
-  CARRY: "To transport something from one place to another.",
-  TOUCH: "To make physical contact with something.",
-  THINK: "To use your mind to consider something.",
-  GUESS: "To answer without being completely certain.",
+  CARRY: "To transport something.",
+  TOUCH: "To make physical contact.",
+  THINK: "To use your mind.",
+  GUESS: "To answer without being certain.",
   SPEAK: "To say words using your voice.",
   REPLY: "An answer given to someone.",
   ENJOY: "To take pleasure in something.",
@@ -174,244 +165,21 @@ const wordBank = {
   AVOID: "To stay away from something.",
   CHASE: "To run after someone or something.",
   REACH: "To arrive at or touch something.",
-  OFFER: "To present something for someone to accept.",
   SHARE: "To give part of something to others.",
-  SERVE: "To provide food or help to someone.",
+  SERVE: "To provide food or help.",
   GUIDE: "To show someone the way.",
-  BRING: "To take something along with you.",
+  BRING: "To take something along.",
   LEAVE: "To go away from a place.",
   ENTER: "To go inside a place.",
   CROSS: "To go from one side to another.",
   CLIMB: "To move upward using hands and feet.",
   SLIDE: "To move smoothly across a surface.",
   SWING: "To move back and forth.",
-  CYCLE: "To ride a bicycle.",
-  ALARM: "A device that makes a sound to warn or wake someone.",
-  BLADE: "The cutting part of a tool.",
-  BLOCK: "A solid piece of material.",
-  BLOOM: "A flower or the process of flowering.",
-  BOARD: "A flat piece of wood or other material.",
-  BRAND: "A name used to identify a product.",
-  BRICK: "A rectangular block used in building walls.",
-  CABLE: "A thick wire used to connect devices.",
-  CAMEL: "An animal known for its humps.",
-  CANDY: "A sweet treat made with sugar.",
-  CHAIN: "A series of connected metal links.",
-  CHARM: "Something believed to bring good luck.",
-  CHEST: "The front part of your upper body.",
-  CHIEF: "A leader or person in charge.",
-  CLAIM: "To say something is true.",
-  CLEAR: "Easy to see or understand.",
-  CLICK: "A short sharp sound or a mouse action.",
-  CLOSE: "To shut something.",
-  COACH: "A person who trains a team.",
-  COAST: "Land beside the sea.",
-  COMIC: "A story told through pictures.",
-  COUNT: "To determine the number of things.",
-  COVER: "Something placed over another thing.",
-  CRACK: "A narrow break in a surface.",
-  CRAFT: "An activity involving making things by hand.",
-  CRAZY: "Very unusual or not sensible.",
-  CREAM: "A thick dairy product.",
-  CROWD: "A large group of people.",
-  DAILY: "Happening every day.",
-  DELAY: "Something that happens later than expected.",
-  DEPTH: "The distance from top to bottom.",
-  DOUBT: "A feeling of uncertainty.",
-  DOZEN: "A group of twelve.",
-  DRAFT: "An early version of a piece of writing.",
-  DRAMA: "A story involving conflict and emotion.",
-  DRESS: "A piece of clothing.",
-  DRINK: "A liquid that you can consume.",
-  DRIVE: "To operate a vehicle.",
-  ELDER: "An older person.",
-  ELITE: "A group considered the best.",
-  ENEMY: "Someone who opposes another person.",
-  ERROR: "A mistake.",
-  EXIST: "To be real or alive.",
-  EXTRA: "More than what is usual.",
-  FIELD: "An open area of land.",
-  FIFTY: "The number after forty-nine.",
-  FLASH: "A sudden burst of light.",
-  FLOOR: "The surface you walk on inside a room.",
-  FOCUS: "To give attention to something.",
-  FORCE: "Strength or power.",
-  FRAME: "A structure surrounding a picture.",
-  FRONT: "The part facing forward.",
-  FRUIT: "The edible part of a plant.",
-  GIANT: "An extremely large person or thing.",
-  GLOBE: "A round model of Earth.",
-  GRAIN: "A small hard seed of a plant.",
-  GRAND: "Impressive or large.",
-  GREAT: "Very good or excellent.",
-  GROUP: "A collection of people or things.",
-  GROWN: "Having developed or become mature.",
-  GUARD: "A person who protects something.",
-  GUEST: "A person invited to a place.",
-  HONOR: "High respect or good character.",
-  IDEAL: "The best possible example.",
-  IMAGE: "A picture or visual representation.",
-  INDEX: "An alphabetical list or indicator.",
-  INNER: "Located inside.",
-  INPUT: "Information entered into a system.",
-  ISSUE: "An important topic or problem.",
-  JEWEL: "A precious stone.",
-  JOINT: "A place where two parts connect.",
-  JUDGE: "A person who makes decisions in court.",
-  KNOWN: "Recognized or familiar.",
-  LABEL: "A tag that identifies something.",
-  LASER: "A focused beam of light.",
-  LAYER: "One level placed over another.",
-  LEAST: "The smallest amount.",
-  LEGAL: "Allowed by law.",
-  LEVEL: "A position or stage.",
-  LIMIT: "The maximum amount allowed.",
-  LOCAL: "Belonging to a nearby area.",
-  LOGIC: "Reasonable thinking.",
-  LOOSE: "Not firmly fixed.",
-  LUCKY: "Having good fortune.",
-  LUNCH: "A meal eaten in the middle of the day.",
-  MAJOR: "Important or significant.",
-  MAKER: "A person or company that creates something.",
-  MARCH: "The third month of the year.",
-  MAYBE: "Possibly or perhaps.",
-  MAYOR: "The elected leader of a city.",
-  METAL: "A hard material such as iron.",
-  MINOR: "Less important or smaller.",
-  MODEL: "A representation of something.",
-  MORAL: "Related to right and wrong.",
-  MOUTH: "The opening used for eating and speaking.",
-  NERVE: "A part of the body carrying signals.",
-  NEVER: "Not at any time.",
-  NOISE: "An unwanted or loud sound.",
-  NORTH: "A direction opposite south.",
-  NURSE: "A healthcare professional who cares for patients.",
-  OFTEN: "Many times.",
-  ORDER: "A command or arrangement.",
-  OTHER: "Different from the one mentioned.",
-  PANEL: "A flat section of a larger structure.",
-  PHASE: "A stage in a process.",
-  PIANO: "A musical instrument with black and white keys.",
-  PIECE: "A part of a whole.",
-  PITCH: "The highness or lowness of a sound.",
-  PLAIN: "Simple or without decoration.",
-  POINT: "A specific location or idea.",
-  POWER: "The ability to control or influence.",
-  PRESS: "To push something firmly.",
-  PRIME: "The most important or best stage.",
-  PRINT: "To produce text or images on paper.",
-  PRIZE: "An award given for achievement.",
-  PROOF: "Evidence that something is true.",
-  PROUD: "Feeling pleased about an achievement.",
-  RAISE: "To lift something upward.",
-  RANGE: "A collection or variety of things.",
-  RAPID: "Very fast.",
-  RATIO: "A comparison between two amounts.",
-  READY: "Prepared for something.",
-  REALM: "A kingdom or area of activity.",
-  REBEL: "A person who resists authority.",
-  REFER: "To mention or direct someone.",
-  RIGHT: "Correct or opposite of left.",
-  ROCKY: "Covered with rocks.",
-  ROUTE: "A way or path to a destination.",
-  ROYAL: "Related to a king or queen.",
-  RURAL: "Related to the countryside.",
-  SAFER: "More protected from danger.",
-  SAINT: "A person recognized for holiness.",
-  SCALE: "A device used to measure weight.",
-  SCENE: "A place where an event happens.",
-  SCOPE: "The range of something.",
-  SENSE: "A way of understanding or feeling.",
-  SHAPE: "The form of an object.",
-  SHEET: "A large thin piece of material.",
-  SHELL: "A hard outer covering.",
-  SHIFT: "To move or change position.",
-  SHINE: "To give off light.",
-  SHIRT: "A piece of clothing worn on the upper body.",
-  SHOCK: "A sudden feeling of surprise.",
-  SHORT: "Not long in length.",
-  SHOWN: "Presented or displayed.",
-  SIGHT: "The ability to see.",
-  SINCE: "From a particular time in the past.",
-  SKILL: "The ability to do something well.",
-  SLICE: "A thin piece cut from something.",
-  SMOKE: "The gas produced by burning something.",
-  SOLID: "Firm and not liquid.",
-  SOLVE: "To find an answer to a problem.",
-  SORRY: "Feeling regret or apology.",
-  SOUND: "Something heard by the ears.",
-  SOUTH: "A direction opposite north.",
-  SPARE: "Extra or available for use.",
-  SPEED: "How fast something moves.",
-  SPEND: "To use money.",
-  SPLIT: "To divide into parts.",
-  STAFF: "People working for an organization.",
-  STAGE: "A raised platform for performers.",
-  STAND: "To be upright on your feet.",
-  STATE: "A condition or political region.",
-  STEAM: "Water in gas form.",
-  STEEL: "A strong metal made mostly of iron.",
-  STICK: "A thin piece of wood.",
-  STILL: "Not moving.",
-  STOCK: "Goods kept for sale.",
-  STRIP: "A long narrow piece.",
-  STUCK: "Unable to move.",
-  STYLE: "A particular way of doing something.",
-  SUPER: "Excellent or very good.",
-  TAKEN: "Carried or brought away.",
-  TASTE: "The flavor of something.",
-  THEME: "The main subject of something.",
-  THICK: "Having a large distance between sides.",
-  THING: "An object or item.",
-  THOSE: "Plural form of that.",
-  TIGHT: "Firmly fixed or held.",
-  TIRED: "Needing rest.",
-  TOKEN: "An object representing something.",
-  TOTAL: "The complete amount.",
-  TOUGH: "Strong or difficult.",
-  TOWER: "A tall narrow building.",
-  TRADE: "The buying and selling of goods.",
-  TREAT: "Something special or enjoyable.",
-  TREND: "A popular direction or fashion.",
-  TRIAL: "A test or court proceeding.",
-  TRIBE: "A group of people with shared culture.",
-  TRICK: "An action intended to deceive or surprise.",
-  TRULY: "In a truthful or genuine way.",
-  TWICE: "Two times.",
-  UNDER: "Below something.",
-  UNION: "A group joined together.",
-  UNITY: "The state of being together.",
-  UNTIL: "Up to a certain time.",
-  UPPER: "Located above.",
-  UPSET: "Feeling unhappy or worried.",
-  URBAN: "Related to a city.",
-  USAGE: "The way something is used.",
-  USUAL: "Common or normal.",
-  VALUE: "The worth of something.",
-  VIRUS: "A tiny infectious agent.",
-  VISIT: "To go see someone or somewhere.",
-  VITAL: "Extremely important.",
-  VOICE: "The sound produced when speaking.",
-  WASTE: "Something that is not used properly.",
-  WHEEL: "A round object that helps vehicles move.",
-  WHERE: "A question asking about location.",
-  WHICH: "A word used to ask about choices.",
-  WHILE: "A period of time.",
-  WHOLE: "Complete and not divided.",
-  WHOSE: "Asking who something belongs to.",
-  WOMAN: "An adult female human.",
-  WORRY: "To feel anxious about something.",
-  WORSE: "Of lower quality.",
-  WORST: "The lowest or least good.",
-  WORTH: "The value of something.",
-  WOULD: "A word used to express possibility.",
-  WRONG: "Not correct.",
-  YOUNG: "Having lived for a short time.",
-  YOUTH: "The period of being young."
+  CYCLE: "To ride a bicycle."
 };
 
 // ==========================================
-// RANDOM WORD WITHOUT REPEAT
+// RANDOM WORD
 // ==========================================
 
 let unusedWords = Object.keys(wordBank);
@@ -424,20 +192,17 @@ function getRandomWord() {
   const index = Math.floor(Math.random() * unusedWords.length);
   return unusedWords.splice(index, 1)[0];
 }
-// ==========================================
-// WORDLE GAME FUNCTIONS
-// ==========================================
 
-function getHint(word) {
-  return wordBank[word];
-}
+// ==========================================
+// WORDLE CHECKER
+// ==========================================
 
 function checkGuess(guess, answer) {
   const result = Array(5).fill("⬛");
   const answerLetters = answer.split("");
   const guessLetters = guess.split("");
 
-  // Correct letters
+  // Correct position
   for (let i = 0; i < 5; i++) {
     if (guessLetters[i] === answerLetters[i]) {
       result[i] = "🟩";
@@ -446,7 +211,7 @@ function checkGuess(guess, answer) {
     }
   }
 
-  // Wrong position letters
+  // Correct letter, wrong position
   for (let i = 0; i < 5; i++) {
     if (guessLetters[i] === null) continue;
 
@@ -467,15 +232,15 @@ function checkGuess(guess, answer) {
 
 module.exports.config = {
   name: "wordle",
-  aliases: ["wdl"],
-  version: "5.0.0",
+  aliases: ["wdl, wordle"],
+  version: "5.1.0",
   author: "Kaizer",
   role: 0,
   category: "game",
   shortDescription: "Guess the hidden 5-letter word",
   longDescription: "Play Wordle and win random coins.",
   guide: {
-    en: "{pn} - Start a game\n{pn} <word> - Submit your guess\n{pn} quit - End your current game"
+    en: "{pn} - Start a game\n{pn} <word> - Submit your guess\n{pn} quit - End your game"
   }
 };
 
@@ -485,25 +250,20 @@ module.exports.config = {
 
 module.exports.run = async function ({ api, event, args, usersData }) {
   const uid = event.senderID;
-  const guess = (args[0] || "").toUpperCase();
+  const threadID = event.threadID;
+  const guess = (args[0] || "").trim().toUpperCase();
 
-  // QUIT GAME
-  if (guess === "QUIT" || guess === "EXIT") {
+  const send = (message) =>
+    api.sendMessage(message, threadID, event.messageID);
+
+  // QUIT
+  if (["QUIT", "EXIT"].includes(guess)) {
     if (!games.has(uid)) {
-      return api.sendMessage(
-        "❌ Wala Kang Active Wordle Game.",
-        event.threadID,
-        event.messageID
-      );
+      return send("❌ Wala Kang Active Wordle Game.");
     }
 
     games.delete(uid);
-
-    return api.sendMessage(
-      "🚪 Wordle Game Ended.",
-      event.threadID,
-      event.messageID
-    );
+    return send("🚪 Wordle Game Ended.");
   }
 
   // START GAME
@@ -515,48 +275,41 @@ module.exports.run = async function ({ api, event, args, usersData }) {
       attempts: 0
     });
 
-    return api.sendMessage(
+    return send(
       "🎮 KAIZER WORDLE\n\n" +
       "Guess The Hidden 5-Letter Word!\n\n" +
-      "💡 CLUE:\n" + getHint(answer) + "\n\n" +
+      "💡 CLUE:\n" + wordBank[answer] + "\n\n" +
       "🟩 = Correct Letter And Position\n" +
       "🟨 = Correct Letter, Wrong Position\n" +
       "⬛ = Letter Not In The Word\n\n" +
       "❤️ Attempts: 6\n\n" +
-      "Type: wordle <guess>\n" +
-      "Example: wordle chair\n\n" +
-      "Type: wordle quit To End The Game.",
-      event.threadID,
-      event.messageID
+      "Type: wdl <guess>\n" +
+      "Example: wdl chair\n\n" +
+      "Type: wdl quit To End The Game."
     );
   }
 
   const game = games.get(uid);
 
-  // CHECK GUESS LENGTH
-  if (!guess || guess.length !== 5) {
-    return api.sendMessage(
+  // VALIDATE GUESS
+  if (!/^[A-Z]{5}$/.test(guess)) {
+    return send(
       "⚠️ Your Guess Must Contain Exactly 5 Letters!\n\n" +
-      "Example: wordle chair",
-      event.threadID,
-      event.messageID
+      "Example: wdl chair"
     );
   }
 
-  // CHECK VALID WORD
-  if (!wordBank[guess]) {
-    return api.sendMessage(
+  // WORD BANK VALIDATION
+  if (!Object.prototype.hasOwnProperty.call(wordBank, guess)) {
+    return send(
       "❌ Word Not Found In The Word Bank!\n" +
-      "Please Try Another 5-Letter Word.",
-      event.threadID,
-      event.messageID
+      "Please Try Another 5-Letter Word."
     );
   }
 
   // COUNT ATTEMPT
   game.attempts++;
 
-  // CHECK ANSWER
   const result = checkGuess(guess, game.answer);
 
   // WIN
@@ -570,55 +323,48 @@ module.exports.run = async function ({ api, event, args, usersData }) {
 
       games.delete(uid);
 
-      return api.sendMessage(
+      return send(
         "🎉 WORDLE COMPLETED!\n\n" +
         "🟩 " + guess.split("").join(" ") + "\n\n" +
         "✅ Correct Answer: " + game.answer + "\n" +
         "🎁 Reward: +" + reward.toLocaleString() + " Coins\n" +
         "💰 Your Balance: " + Number(balance).toLocaleString() + " Coins\n\n" +
-        "🏆 Congratulations!",
-        event.threadID,
-        event.messageID
+        "🏆 Congratulations!"
       );
     } catch (error) {
       games.delete(uid);
-
       console.error("[WORDLE REWARD ERROR]", error);
 
-      return api.sendMessage(
+      return send(
         "🎉 You Guessed The Correct Word!\n" +
-        "However, The Coin Reward Could Not Be Added. Please Check Your Economy System.",
-        event.threadID,
-        event.messageID
+        "However, The Coin Reward Could Not Be Added.\n" +
+        "Please Check Your Economy System."
       );
     }
   }
 
-  // LOSE AFTER 6 ATTEMPTS
+  // GAME OVER
   if (game.attempts >= 6) {
     games.delete(uid);
 
-    return api.sendMessage(
+    return send(
       "❌ GAME OVER!\n\n" +
       result.join(" ") + "\n\n" +
       "🔑 Correct Answer: " + game.answer + "\n" +
       "💰 Coins: No Coins Added Or Deducted.\n\n" +
-      "Type wordle To Play Again!",
-      event.threadID,
-      event.messageID
+      "Type wdl To Play Again!"
     );
   }
 
   // CONTINUE GAME
-  return api.sendMessage(
+  return send(
     "🎮 KAIZER WORDLE\n\n" +
     result.join(" ") + "\n\n" +
     "📝 Your Guess: " + guess + "\n" +
     "❤️ Attempts Used: " + game.attempts + "/6\n" +
     "🔄 Attempts Left: " + (6 - game.attempts) + "\n\n" +
-    "💡 Clue: " + getHint(game.answer) + "\n\n" +
-    "Type: wordle <guess>",
-    event.threadID,
-    event.messageID
+    "💡 Clue: " + wordBank[game.answer] + "\n\n" +
+    "Type: wdl <guess>"
   );
 };
+  
