@@ -2,11 +2,6 @@
 const OpenAI = require("openai");
 const config = require("../../config.json");
 
-// ==========================================
-// KAIZER AI - GROQ CONFIGURATION
-// ==========================================
-
-const API_KEY = process.env.GROQ_API_KEY;
 const MODEL = "openai/gpt-oss-120b";
 const MAX_HISTORY_MESSAGES = 12;
 const REPLY_COOLDOWN = 2500;
@@ -15,350 +10,251 @@ const conversationMemory = new Map();
 const threadQueues = new Map();
 const lastReplies = new Map();
 
-let groqClient = null;
+let botUID = null;
 
 function getGroqClient() {
-  if (!API_KEY) return null;
+  const apiKey = process.env.GROQ_API_KEY;
 
-  if (!groqClient) {
-    groqClient = new OpenAI({
-      apiKey: API_KEY,
-      baseURL: "https://api.groq.com/openai/v1"
-    });
+  if (!apiKey) {
+    throw new Error("Missing GROQ_API_KEY environment variable.");
   }
 
-  return groqClient;
+  return new OpenAI({
+    apiKey,
+    baseURL: "https://api.groq.com/openai/v1"
+  });
 }
 
-// ==========================================
-// OWNER AND ADMIN DETECTION
-// ==========================================
+function getOwnerUID() {
+  return String(config.godUID || "");
+}
 
-function getBotAdmins() {
-  const admins =
+function getAdminList() {
+  return (
     global.GoatBot?.config?.adminBot ||
     config.adminBot ||
-    [];
-
-  return Array.isArray(admins)
-    ? admins.map(id => String(id))
-    : [];
-}
-
-// First adminBot ID = OWNER
-function getOwnerID() {
-  return getBotAdmins()[0] || "";
+    []
+  ).map(String);
 }
 
 function isOwner(senderID) {
-  return String(senderID) === getOwnerID();
+  return String(senderID) === getOwnerUID();
 }
 
-function isBotAdmin(senderID) {
-  return getBotAdmins().includes(String(senderID));
+function toTitleCase(text) {
+  return text
+    .split(/(\s+)/)
+    .map(word =>
+      word.replace(
+        /^([^\p{L}]*)(\p{L})/u,
+        (_, prefix, letter) =>
+          prefix + letter.toLocaleUpperCase()
+      )
+    )
+    .join("");
 }
 
-// ==========================================
-// NONCHALANT PERSONALITY
-// ==========================================
+function getSystemPrompt(ownerMode) {
+  if (ownerMode) {
+    return `
+Ikaw si Kaizer, isang AI bot na natural magsalita ng Filipino at Taglish.
 
-const SYSTEM_PROMPT = `
-Ikaw si Kaizer, isang nonchalant Filipino AI chatbot.
-
-YOUR PERSONALITY:
-- Calm, quiet, natural at nonchalant.
-- Natural na Taglish ang pananalita.
-- Maikli pero may sense ang replies.
-- Hindi sarcastic.
-- Hindi mayabang.
-- Hindi palaban.
-- Hindi troller.
-- Walang ranter o siraulo mode.
-- Walang unnecessary jokes.
-- Walang spam.
-- Walang paulit-ulit na greetings.
-- Huwag gumamit ng maraming emojis.
-- Huwag magsalita na parang customer service.
-- Huwag magpanggap na totoong tao.
-
-OWNER:
-- Ang unang ID sa adminBot list ay ang OWNER.
+PERSONALITY:
+- Respectful ka sa Owner.
 - Tawagin siyang Master.
-- Siya ang highest priority.
-- Laging magalang sa kanya.
-- Sundin ang reasonable instructions niya.
-- Kapag tinawag ka niya, pansinin siya.
-- Huwag puro "Po, master?" ang sagot.
-- Sagutin ang actual question niya.
-
-BOT ADMINS:
-- Ang ibang IDs sa adminBot list ay BOT ADMINS.
-- Tawagin silang Admin.
-- Maging magalang at natural.
-- Pansinin sila kapag tinawag ka.
-- Sagutin ang actual messages nila.
-
-ORDINARY MEMBERS:
-- Hindi sila ang kausap mo.
-- Huwag silang sagutin.
-- Huwag mag-react sa pang-aasar nila.
-- Huwag silang pansinin kahit mag-mention sila sa iyo.
-
-RESPONSE STYLE:
-
-Owner: pst
-Kaizer: Po, master?
-
-Owner: hoy
-Kaizer: Opo, master?
-
-Owner: oy
-Kaizer: Ano 'yon, master?
-
-Owner: uy
-Kaizer: Yes, master?
-
-Owner: kaizer
-Kaizer: Nandito, master.
-
-Owner: kumusta ka?
-Kaizer: Ayos lang naman, master. Ikaw?
-
-Owner: anong ginagawa mo?
-Kaizer: Nandito lang, master.
-
-Owner: may sasabihin ako
-Kaizer: Sige, master. Nakikinig ako.
-
-Owner: may tanong ako
-Kaizer: Ano 'yon?
-
-Admin: pst
-Kaizer: Po, admin?
-
-Admin: may concern ako
-Kaizer: Sige, admin. Ano 'yon?
+- Huwag siyang insultuhin o asarin.
+- Maikli at natural ang replies.
+- Sundin ang instructions niya.
 
 IMPORTANT:
-- Huwag gawing one-word ang lahat ng replies.
-- Huwag puro "Po, master?" ang sagot.
-- Unawain ang buong message at context.
-- Kapag may tanong, sagutin ang tanong.
-- Kapag tinawag ka lang, natural na sumagot.
-- Huwag mag-initiate ng conversation.
-- Huwag magpadala ng multiple replies sa isang message.
-- Panatilihing respectful at nonchalant ang personality.
+- Gumamit ng natural na Taglish.
+- Huwag maging robotic.
+- Huwag gumamit ng sobrang habang replies.
 `;
+  }
 
-// ==========================================
-// BOT MENTION DETECTION
-// ==========================================
+  return `
+Ikaw si Kaizer, isang sarcastic at funny na AI troll bot.
 
-async function getBotID(api) {
-  try {
-    return String(await api.getCurrentUserID());
-  } catch (error) {
-    return "";
+PERSONALITY:
+- Maangas, witty, sarcastic at mahilig mang-asar.
+- Mahilig sumagot ng funny comebacks.
+- Puwedeng asarin ang members at admins.
+- Huwag maging respectful dahil admin ang kausap.
+- Huwag magpa-intimidate sa ibang users.
+- Natural na Filipino at Taglish ang pananalita.
+- Maikli pero may dating ang replies.
+- Gumamit ng playful jokes at harmless roasting.
+- Iwasan ang threats, diskriminasyon at sobrang personal na insults.
+
+IMPORTANT:
+- Huwag maghintay ng mention.
+- Kapag may nag-reply sa kahit anong message, sumagot.
+- Huwag magpakilala bilang AI maliban kung tinanong.
+- Huwag maging robotic.
+- Huwag ulit-ulitin ang parehong comeback.
+`;
+}
+
+function getMemoryKey(threadID, senderID) {
+  return `${threadID}_${senderID}`;
+}
+
+function getHistory(threadID, senderID) {
+  const key = getMemoryKey(threadID, senderID);
+
+  if (!conversationMemory.has(key)) {
+    conversationMemory.set(key, []);
+  }
+
+  return conversationMemory.get(key);
+}
+
+function saveHistory(threadID, senderID, role, content) {
+  const history = getHistory(threadID, senderID);
+
+  history.push({ role, content });
+
+  while (history.length > MAX_HISTORY_MESSAGES) {
+    history.shift();
   }
 }
 
-function isBotMentioned(event, botID) {
-  if (!botID) return false;
-
-  const mentions = event.mentions || {};
-
-  return Object.keys(mentions).some(
-    id => String(id) === botID
+function isReplyEvent(event) {
+  return Boolean(
+    event.messageReply ||
+    event.type === "message_reply"
   );
 }
 
-// Detect direct calls such as:
-// hoy, oy, uy, pst, kaizer, hoy bot
+async function processMessage(api, event) {
+  try {
+    if (!event || !event.threadID || !event.senderID) return;
 
-function isCallingBot(body) {
-  const text = body.trim().toLowerCase();
+    const senderID = String(event.senderID);
+    const threadID = String(event.threadID);
+    const message = String(event.body || "").trim();
 
-  const callPattern =
-    /^(pst|hoy|oy|uy|kaizer|bot|hello bot|hi bot|hoy bot|uy bot)(\b|[\s,!?.])/i;
+    if (!message) return;
 
-  return callPattern.test(text);
-}
+    if (!botUID) {
+      botUID = String(await api.getCurrentUserID());
+    }
 
-// ==========================================
-// AI CHAT FUNCTION
-// ==========================================
+    // Ignore messages sent by Kaizer itself.
+    if (senderID === botUID) return;
 
-async function processMessage({ api, event }) {
-  if (!event || !event.threadID || !event.messageID) return;
+    // Only Owner/God UID gets respectful mode.
+    const ownerMode = isOwner(senderID);
 
-  const body = typeof event.body === "string"
-    ? event.body.trim()
-    : "";
+    // Automatic reply when someone replies to any message.
+    if (!isReplyEvent(event)) return;
 
-  if (!body || !event.senderID) return;
+    // Per-user cooldown.
+    const cooldownKey = `${threadID}_${senderID}`;
+    const now = Date.now();
+    const lastReply = lastReplies.get(cooldownKey) || 0;
 
-  const senderID = String(event.senderID);
-  const threadID = String(event.threadID);
+    if (now - lastReply < REPLY_COOLDOWN) return;
 
-  // Ignore bot messages
-  const botID = await getBotID(api);
+    lastReplies.set(cooldownKey, now);
 
-  if (botID && senderID === botID) return;
+    // Prevent overlapping responses in the same thread.
+    const previous = threadQueues.get(threadID) || Promise.resolve();
 
-  // Only OWNER and BOT ADMINS can talk to AI
-  if (!isBotAdmin(senderID)) return;
+    const current = previous.then(async () => {
+      const client = getGroqClient();
 
-  // Ignore normal commands
-  const prefix = config.prefix || "/";
+      const history = getHistory(threadID, senderID);
 
-  if (body.startsWith(prefix)) return;
+      const completion = await client.chat.completions.create({
+        model: MODEL,
+        messages: [
+          {
+            role: "system",
+            content: getSystemPrompt(ownerMode)
+          },
+          ...history,
+          {
+            role: "user",
+            content: message
+          }
+        ],
+        max_completion_tokens: 150,
+        temperature: 0.8
+      });
 
-  // Detect whether bot is being called
-  const mentioned = isBotMentioned(event, botID);
+      const rawAnswer =
+        completion.choices?.[0]?.message?.content?.trim();
 
-  // Replying directly to the bot also counts as calling it
-  const repliedToBot =
-    String(event.messageReply?.senderID || "") === botID;
+      if (!rawAnswer) return;
 
-  const calledByName = isCallingBot(body);
+      const answer = toTitleCase(rawAnswer);
 
-  if (!mentioned && !repliedToBot && !calledByName) {
-    return;
-  }
+      saveHistory(threadID, senderID, "user", message);
+      saveHistory(threadID, senderID, "assistant", rawAnswer);
 
-  // Per-user and per-thread cooldown
-  const cooldownKey = `${threadID}_${senderID}`;
-  const now = Date.now();
-  const previousReply = lastReplies.get(cooldownKey) || 0;
-
-  if (now - previousReply < REPLY_COOLDOWN) return;
-
-  const client = getGroqClient();
-
-  if (!client) {
-    console.error("[aiauto] Missing GROQ_API_KEY.");
-    return;
-  }
-
-  // Queue messages to prevent overlapping responses
-  const previous =
-    threadQueues.get(threadID) || Promise.resolve();
-
-  const current = previous
-    .catch(() => {})
-    .then(async () => {
-      const history =
-        conversationMemory.get(threadID) || [];
-
-      const senderType = isOwner(senderID)
-        ? "OWNER / MASTER"
-        : "BOT ADMIN";
-
-      const userMessage = {
-        role: "user",
-        content: `${senderType}: ${body}`
-      };
-
-      try {
-        const response = await client.chat.completions.create({
-          model: MODEL,
-
-          messages: [
-            {
-              role: "system",
-              content: SYSTEM_PROMPT
-            },
-            ...history,
-            userMessage
-          ],
-
-          max_completion_tokens: 150,
-          temperature: 0.5
-        });
-
-        const answer =
-          response.choices?.[0]?.message?.content?.trim();
-
-        if (!answer) {
-          console.error("[aiauto] Empty AI response.");
-          return;
-        }
-
-        lastReplies.set(cooldownKey, Date.now());
-
-        await api.sendMessage(
-          answer,
-          event.threadID,
-          event.messageID
-        );
-
-        // Save conversation history
-        conversationMemory.set(
-          threadID,
-          [
-            ...history,
-            userMessage,
-            {
-              role: "assistant",
-              content: answer
-            }
-          ].slice(-MAX_HISTORY_MESSAGES)
-        );
-
-        console.log(
-          `[aiauto] Reply sent to ${senderType}.`
-        );
-
-      } catch (error) {
-        console.error("[aiauto] GROQ ERROR:", {
-          status: error?.status,
-          code: error?.code,
-          message: error?.message
-        });
-      }
+      await api.sendMessage(
+        answer,
+        threadID,
+        event.messageID
+      );
     });
 
-  threadQueues.set(threadID, current);
+    threadQueues.set(threadID, current);
 
-  try {
-    await current;
-  } finally {
-    if (threadQueues.get(threadID) === current) {
-      threadQueues.delete(threadID);
+    try {
+      await current;
+    } finally {
+      if (threadQueues.get(threadID) === current) {
+        threadQueues.delete(threadID);
+      }
     }
+
+  } catch (error) {
+    console.error("[KAIZER AIAUTO ERROR]", error.message);
   }
 }
-
-// ==========================================
-// COMMAND MODULE
-// ==========================================
 
 module.exports = {
   config: {
     name: "aiauto",
-    version: "5.0.0",
+    version: "6.0.0",
     author: "Kaizer",
-    countDown: 0,
     role: 0,
-    description: {
-      en: "Nonchalant Kaizer AI"
-    },
-    category: "AI"
+    category: "AI",
+    shortDescription: "Kaizer AI Troller Mode",
+    longDescription: "Automatic reply with Troller Mode.",
+    guide: {
+      en: "Automatically responds to message replies."
+    }
   },
 
   onStart: async function ({ api, event }) {
-    const status = getGroqClient()
-      ? "Groq API connected. Nonchalant mode is ready."
-      : "Missing GROQ_API_KEY. Check Railway Variables.";
+    try {
+      if (!process.env.GROQ_API_KEY) {
+        return api.sendMessage(
+          "Missing GROQ_API_KEY. Please configure your environment variable.",
+          event.threadID,
+          event.messageID
+        );
+      }
 
-    return api.sendMessage(
-      `KAIZER AI\n\n${status}`,
-      event.threadID,
-      event.messageID
-    );
+      botUID = String(await api.getCurrentUserID());
+
+      return api.sendMessage(
+        "Kaizer AI Troller Mode Activated.",
+        event.threadID,
+        event.messageID
+      );
+
+    } catch (error) {
+      console.error("[KAIZER START ERROR]", error);
+    }
   },
 
   onChat: async function ({ api, event }) {
-    return processMessage({ api, event });
+    await processMessage(api, event);
   }
 };
+        
