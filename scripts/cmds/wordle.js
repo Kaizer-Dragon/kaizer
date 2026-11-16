@@ -2,7 +2,7 @@
 const games = new Map();
 
 // ==========================================
-// KAIZER WORDLE - 250 WORDS
+// KAIZER WORDLE - 150 WORD BANK
 // ==========================================
 
 const wordBank = {
@@ -108,6 +108,7 @@ const wordBank = {
   FRESH: "Recently made or obtained.",
   CLEAN: "Free from dirt or mess.",
   DIRTY: "Covered with dirt or stains.",
+  STRONG: "Having great physical or mental power.",
   WEAK: "Lacking strength or power.",
   CHILD: "A young human being.",
   HUMAN: "A person belonging to the human species.",
@@ -138,7 +139,6 @@ const wordBank = {
   ROUND: "Having the shape of a circle or sphere.",
   SHARP: "Having an edge or point that can cut.",
   ROUGH: "Having an uneven surface.",
-  SMOOTH: "Having an even and soft surface.",
   EMPTY: "Containing nothing.",
   LARGE: "Big in size.",
   SMALL: "Little in size.",
@@ -158,286 +158,37 @@ const wordBank = {
   START: "To begin an activity.",
   BUILD: "To construct or make something.",
   BREAK: "To separate something into pieces.",
-  THROW: "To send something through the air.",
-  CATCH: "To grab something moving through the air.",
-  CARRY: "To transport something from one place to another.",
-  TOUCH: "To make physical contact with something.",
-  THINK: "To use your mind to consider something.",
-  GUESS: "To answer without being completely certain.",
-  SPEAK: "To say words using your voice.",
-  REPLY: "An answer given to someone.",
-  ENJOY: "To take pleasure in something.",
-  RELAX: "To rest and become less stressed.",
-  AVOID: "To stay away from something.",
-  CHASE: "To run after someone or something.",
-  REACH: "To arrive at or touch something.",
-  OFFER: "To present something for someone to accept.",
-  SHARE: "To give part of something to others.",
-  SERVE: "To provide food or help to someone.",
-  GUIDE: "To show someone the way.",
-  BRING: "To take something along with you.",
-  LEAVE: "To go away from a place.",
-  ENTER: "To go inside a place.",
-  CROSS: "To go from one side to another.",
-  CLIMB: "To move upward using hands and feet.",
-  SLIDE: "To move smoothly across a surface.",
-  SWING: "To move back and forth.",
-  CYCLE: "To ride a bicycle.",
-  ALARM: "A device that makes a sound to warn or wake someone.",
-  BLADE: "The cutting part of a tool.",
-  BLOCK: "A solid piece of material.",
-  BLOOM: "A flower or the process of flowering.",
-  BOARD: "A flat piece of wood or other material.",
-  BRAND: "A name used to identify a product.",
-  BRICK: "A rectangular block used in building walls.",
-  CABLE: "A thick wire used to connect devices.",
-  CAMEL: "An animal known for its humps.",
-  CANDY: "A sweet treat made with sugar.",
-  CHAIN: "A series of connected metal links.",
-  CHARM: "Something believed to bring good luck.",
-  CHEST: "The front part of your upper body.",
-  CHIEF: "A leader or person in charge.",
-  CLAIM: "To say something is true.",
-  CLEAR: "Easy to see or understand.",
-  CLICK: "A short sharp sound or a mouse action.",
-  CLOSE: "To shut something.",
-  COACH: "A person who trains a team.",
-  COAST: "Land beside the sea.",
-  COMIC: "A story told through pictures.",
-  COUNT: "To determine the number of things.",
-  COVER: "Something placed over another thing.",
-  CRACK: "A narrow break in a surface.",
-  CRAFT: "An activity involving making things by hand.",
-  CRAZY: "Very unusual or not sensible.",
-  CREAM: "A thick dairy product.",
-  CROWD: "A large group of people.",
-  DAILY: "Happening every day.",
-  DELAY: "Something that happens later than expected.",
-  DEPTH: "The distance from top to bottom.",
-  DOUBT: "A feeling of uncertainty.",
-  DOZEN: "A group of twelve.",
-  DRAFT: "An early version of a piece of writing.",
-  DRAMA: "A story involving conflict and emotion.",
-  DRESS: "A piece of clothing.",
-  DRINK: "A liquid that you can consume.",
-  DRIVE: "To operate a vehicle.",
-  ELDER: "An older person.",
-  ELITE: "A group considered the best.",
-  ENEMY: "Someone who opposes another person.",
-  ERROR: "A mistake.",
-  EXIST: "To be real or alive.",
-  EXTRA: "More than what is usual.",
-  FIELD: "An open area of land.",
-  FIFTY: "The number after forty-nine.",
-  FLASH: "A sudden burst of light.",
-  FLOOR: "The surface you walk on inside a room.",
-  FOCUS: "To give attention to something.",
-  FORCE: "Strength or power.",
-  FRAME: "A structure surrounding a picture.",
-  FRONT: "The part facing forward.",
-  FRUIT: "The edible part of a plant.",
-  GIANT: "An extremely large person or thing.",
-  GLOBE: "A round model of Earth.",
-  GRAIN: "A small hard seed of a plant.",
-  GRAND: "Impressive or large.",
-  GREAT: "Very good or excellent.",
-  GROUP: "A collection of people or things.",
-  GROWN: "Having developed or become mature.",
-  GUARD: "A person who protects something.",
-  GUEST: "A person invited to a place.",
-  HONOR: "High respect or good character.",
-  IDEAL: "The best possible example.",
-  IMAGE: "A picture or visual representation.",
-  INDEX: "An alphabetical list or indicator.",
-  INNER: "Located inside.",
-  INPUT: "Information entered into a system.",
-  ISSUE: "An important topic or problem.",
-  JEWEL: "A precious stone.",
-  JOINT: "A place where two parts connect.",
-  JUDGE: "A person who makes decisions in court.",
-  KNOWN: "Recognized or familiar.",
-  LABEL: "A tag that identifies something.",
-  LASER: "A focused beam of light.",
-  LAYER: "One level placed over another.",
-  LEAST: "The smallest amount.",
-  LEGAL: "Allowed by law.",
-  LEVEL: "A position or stage.",
-  LIMIT: "The maximum amount allowed.",
-  LOCAL: "Belonging to a nearby area.",
-  LOGIC: "Reasonable thinking.",
-  LOOSE: "Not firmly fixed.",
-  LUCKY: "Having good fortune.",
-  LUNCH: "A meal eaten in the middle of the day.",
-  MAJOR: "Important or significant.",
-  MAKER: "A person or company that creates something.",
-  MARCH: "The third month of the year.",
-  MAYBE: "Possibly or perhaps.",
-  MAYOR: "The elected leader of a city.",
-  METAL: "A hard material such as iron.",
-  MINOR: "Less important or smaller.",
-  MODEL: "A representation of something.",
-  MORAL: "Related to right and wrong.",
-  MOUTH: "The opening used for eating and speaking.",
-  NERVE: "A part of the body carrying signals.",
-  NEVER: "Not at any time.",
-  NOISE: "An unwanted or loud sound.",
-  NORTH: "A direction opposite south.",
-  NURSE: "A healthcare professional who cares for patients.",
-  OFTEN: "Many times.",
-  ORDER: "A command or arrangement.",
-  OTHER: "Different from the one mentioned.",
-  PANEL: "A flat section of a larger structure.",
-  PHASE: "A stage in a process.",
-  PIANO: "A musical instrument with black and white keys.",
-  PIECE: "A part of a whole.",
-  PITCH: "The highness or lowness of a sound.",
-  PLAIN: "Simple or without decoration.",
-  POINT: "A specific location or idea.",
-  POWER: "The ability to control or influence.",
-  PRESS: "To push something firmly.",
-  PRIME: "The most important or best stage.",
-  PRINT: "To produce text or images on paper.",
-  PRIZE: "An award given for achievement.",
-  PROOF: "Evidence that something is true.",
-  PROUD: "Feeling pleased about an achievement.",
-  RAISE: "To lift something upward.",
-  RANGE: "A collection or variety of things.",
-  RAPID: "Very fast.",
-  RATIO: "A comparison between two amounts.",
-  READY: "Prepared for something.",
-  REALM: "A kingdom or area of activity.",
-  REBEL: "A person who resists authority.",
-  REFER: "To mention or direct someone.",
-  RIGHT: "Correct or opposite of left.",
-  ROCKY: "Covered with rocks.",
-  ROUTE: "A way or path to a destination.",
-  ROYAL: "Related to a king or queen.",
-  RURAL: "Related to the countryside.",
-  SAFER: "More protected from danger.",
-  SAINT: "A person recognized for holiness.",
-  SCALE: "A device used to measure weight.",
-  SCENE: "A place where an event happens.",
-  SCOPE: "The range of something.",
-  SENSE: "A way of understanding or feeling.",
-  SHAPE: "The form of an object.",
-  SHEET: "A large thin piece of material.",
-  SHELL: "A hard outer covering.",
-  SHIFT: "To move or change position.",
-  SHINE: "To give off light.",
-  SHIRT: "A piece of clothing worn on the upper body.",
-  SHOCK: "A sudden feeling of surprise.",
-  SHORT: "Not long in length.",
-  SHOWN: "Presented or displayed.",
-  SIGHT: "The ability to see.",
-  SINCE: "From a particular time in the past.",
-  SKILL: "The ability to do something well.",
-  SLICE: "A thin piece cut from something.",
-  SMOKE: "The gas produced by burning something.",
-  SOLID: "Firm and not liquid.",
-  SOLVE: "To find an answer to a problem.",
-  SORRY: "Feeling regret or apology.",
-  SOUND: "Something heard by the ears.",
-  SOUTH: "A direction opposite north.",
-  SPARE: "Extra or available for use.",
-  SPEED: "How fast something moves.",
-  SPEND: "To use money.",
-  SPLIT: "To divide into parts.",
-  STAFF: "People working for an organization.",
-  STAGE: "A raised platform for performers.",
-  STAND: "To be upright on your feet.",
-  STATE: "A condition or political region.",
-  STEAM: "Water in gas form.",
-  STEEL: "A strong metal made mostly of iron.",
-  STICK: "A thin piece of wood.",
-  STILL: "Not moving.",
-  STOCK: "Goods kept for sale.",
-  STRIP: "A long narrow piece.",
-  STUCK: "Unable to move.",
-  STYLE: "A particular way of doing something.",
-  SUPER: "Excellent or very good.",
-  TAKEN: "Carried or brought away.",
-  TASTE: "The flavor of something.",
-  THEME: "The main subject of something.",
-  THICK: "Having a large distance between sides.",
-  THING: "An object or item.",
-  THOSE: "Plural form of that.",
-  TIGHT: "Firmly fixed or held.",
-  TIRED: "Needing rest.",
-  TOKEN: "An object representing something.",
-  TOTAL: "The complete amount.",
-  TOUGH: "Strong or difficult.",
-  TOWER: "A tall narrow building.",
-  TRADE: "The buying and selling of goods.",
-  TREAT: "Something special or enjoyable.",
-  TREND: "A popular direction or fashion.",
-  TRIAL: "A test or court proceeding.",
-  TRIBE: "A group of people with shared culture.",
-  TRICK: "An action intended to deceive or surprise.",
-  TRULY: "In a truthful or genuine way.",
-  TWICE: "Two times.",
-  UNDER: "Below something.",
-  UNION: "A group joined together.",
-  UNITY: "The state of being together.",
-  UNTIL: "Up to a certain time.",
-  UPPER: "Located above.",
-  UPSET: "Feeling unhappy or worried.",
-  URBAN: "Related to a city.",
-  USAGE: "The way something is used.",
-  USUAL: "Common or normal.",
-  VALUE: "The worth of something.",
-  VIRUS: "A tiny infectious agent.",
-  VISIT: "To go see someone or somewhere.",
-  VITAL: "Extremely important.",
-  VOICE: "The sound produced when speaking.",
-  WASTE: "Something that is not used properly.",
-  WHEEL: "A round object that helps vehicles move.",
-  WHERE: "A question asking about location.",
-  WHICH: "A word used to ask about choices.",
-  WHILE: "A period of time.",
-  WHOLE: "Complete and not divided.",
-  WHOSE: "Asking who something belongs to.",
-  WOMAN: "An adult female human.",
-  WORRY: "To feel anxious about something.",
-  WORSE: "Of lower quality.",
-  WORST: "The lowest or least good.",
-  WORTH: "The value of something.",
-  WOULD: "A word used to express possibility.",
-  WRONG: "Not correct.",
-  YOUNG: "Having lived for a short time.",
-  YOUTH: "The period of being young."
+  THROW: "To send something through the air."
 };
 
-// Only use valid 5-letter words.
-// Exactly 250 answers are selected from the word bank.
-const validWords = Object.keys(wordBank)
-  .filter(word => /^[A-Z]{5}$/.test(word))
-  .slice(0, 250);
+// ==========================================
+// RANDOM WORD WITHOUT REPEAT
+// ==========================================
 
-let unusedWords = [...validWords];
+let unusedWords = Object.keys(wordBank);
 
 function getRandomWord() {
   if (unusedWords.length === 0) {
-    unusedWords = [...validWords];
+    unusedWords = Object.keys(wordBank);
   }
 
   const index = Math.floor(Math.random() * unusedWords.length);
   return unusedWords.splice(index, 1)[0];
 }
 
+// ==========================================
+// WORDLE GAME FUNCTIONS
+// ==========================================
+
 function getHint(word) {
   return wordBank[word];
 }
-
-// ==========================================
-// WORD CHECKER
-// ==========================================
 
 function checkGuess(guess, answer) {
   const result = Array(5).fill("⬛");
   const answerLetters = answer.split("");
   const guessLetters = guess.split("");
 
-  // Correct position first
   for (let i = 0; i < 5; i++) {
     if (guessLetters[i] === answerLetters[i]) {
       result[i] = "🟩";
@@ -446,7 +197,6 @@ function checkGuess(guess, answer) {
     }
   }
 
-  // Correct letter, wrong position
   for (let i = 0; i < 5; i++) {
     if (guessLetters[i] === null) continue;
 
@@ -462,54 +212,164 @@ function checkGuess(guess, answer) {
 }
 
 // ==========================================
-// COMMAND
+// COMMAND CONFIG
 // ==========================================
 
-module.exports = {
-  config: {
-    name: "wordle",
-    aliases: ["wdl"],
-    version: "6.0.0",
-    author: "Kaizer",
-    role: 0,
-    countDown: 3,
-    category: "game",
-    shortDescription: "Guess the hidden 5-letter word",
-    longDescription: "Play Wordle and win random coins.",
-    guide: {
-      en: "{pn} - Start a game\n{pn} <word> - Submit your guess\n{pn} quit - End your game"
+module.exports.config = {
+  name: "wordle",
+  aliases: ["wdl"],
+  version: "5.1.0",
+  author: "Kaizer",
+  role: 0,
+  category: "game",
+  shortDescription: "Guess the hidden 5-letter word",
+  longDescription: "Play Wordle and win random coins.",
+  guide: {
+    en: "{pn} - Start a game\n{pn} <word> - Submit your guess\n{pn} quit - End your current game"
+  }
+};
+
+// ==========================================
+// MAIN COMMAND
+// ==========================================
+
+module.exports.run = async function ({ api, event, args, usersData }) {
+  const uid = event.senderID;
+  const guess = (args[0] || "").toUpperCase();
+
+  // QUIT GAME
+  if (guess === "QUIT" || guess === "EXIT") {
+    if (!games.has(uid)) {
+      return api.sendMessage(
+        "❌ Wala Kang Active Wordle Game.",
+        event.threadID,
+        event.messageID
+      );
     }
-  },
 
-  onStart: async function ({ message, event, args, usersData }) {
-    const uid = String(event.senderID);
-    const guess = (args[0] || "").toUpperCase();
+    games.delete(uid);
 
-    // QUIT GAME
-    if (guess === "QUIT" || guess === "EXIT") {
-      if (!games.has(uid)) {
-        return message.reply("❌ Wala kang active Wordle game.");
-      }
+    return api.sendMessage(
+      "🚪 Wordle Game Ended.",
+      event.threadID,
+      event.messageID
+    );
+  }
+
+  // START GAME
+  if (!games.has(uid)) {
+    const answer = getRandomWord();
+
+    games.set(uid, {
+      answer,
+      attempts: 0
+    });
+
+    return api.sendMessage(
+      "🎮 KAIZER WORDLE\n\n" +
+      "Guess The Hidden 5-Letter Word!\n\n" +
+      "💡 CLUE:\n" + getHint(answer) + "\n\n" +
+      "🟩 = Correct Letter And Position\n" +
+      "🟨 = Correct Letter, Wrong Position\n" +
+      "⬛ = Letter Not In The Word\n\n" +
+      "❤️ Attempts: 6\n\n" +
+      "Type: wordle <guess>\n" +
+      "Example: wordle chair\n\n" +
+      "Type: wordle quit To End The Game.",
+      event.threadID,
+      event.messageID
+    );
+  }
+
+  const game = games.get(uid);
+
+  // CHECK GUESS LENGTH
+  if (!guess || guess.length !== 5) {
+    return api.sendMessage(
+      "⚠️ Your Guess Must Contain Exactly 5 Letters!\n\n" +
+      "Example: wordle chair",
+      event.threadID,
+      event.messageID
+    );
+  }
+
+  // CHECK VALID WORD
+  if (!wordBank[guess]) {
+    return api.sendMessage(
+      "❌ Word Not Found In The Word Bank!\n" +
+      "Please Try Another 5-Letter Word.",
+      event.threadID,
+      event.messageID
+    );
+  }
+
+  // COUNT ATTEMPT
+  game.attempts++;
+
+  // CHECK ANSWER
+  const result = checkGuess(guess, game.answer);
+
+  // WIN
+  if (guess === game.answer) {
+    const reward = Math.floor(Math.random() * 2000) + 1;
+
+    try {
+      await usersData.addMoney(uid, reward);
+
+      const balance = await usersData.getMoney(uid);
 
       games.delete(uid);
-      return message.reply("🚪 Wordle game ended.");
+
+      return api.sendMessage(
+        "🎉 WORDLE COMPLETED!\n\n" +
+        "🟩 " + guess.split("").join(" ") + "\n\n" +
+        "✅ Correct Answer: " + game.answer + "\n" +
+        "🎁 Reward: +" + reward.toLocaleString() + " Coins\n" +
+        "💰 Your Balance: " + Number(balance).toLocaleString() + " Coins\n\n" +
+        "🏆 Congratulations!",
+        event.threadID,
+        event.messageID
+      );
+    } catch (error) {
+      games.delete(uid);
+
+      console.error("[WORDLE REWARD ERROR]", error);
+
+      return api.sendMessage(
+        "🎉 You Guessed The Correct Word!\n" +
+        "However, The Coin Reward Could Not Be Added. Please Check Your Economy System.",
+        event.threadID,
+        event.messageID
+      );
     }
+  }
 
-    // START GAME
-    if (!games.has(uid)) {
-      const answer = getRandomWord();
+  // LOSE AFTER 6 ATTEMPTS
+  if (game.attempts >= 6) {
+    games.delete(uid);
 
-      games.set(uid, {
-        answer,
-        attempts: 0,
-        history: []
-      });
+    return api.sendMessage(
+      "❌ GAME OVER!\n\n" +
+      result.join(" ") + "\n\n" +
+      "🔑 Correct Answer: " + game.answer + "\n" +
+      "💰 Coins: No Coins Added Or Deducted.\n\n" +
+      "Type wordle To Play Again!",
+      event.threadID,
+      event.messageID
+    );
+  }
 
-      return message.reply(
-        "🎮 KAIZER WORDLE\n\n" +
-        "Guess the hidden 5-letter word!\n\n" +
-        "💡 CLUE:\n" + getHint(answer) + "\n\n" +
-        "🟩 Correct letter and position\n" +
-        "🟨 Correct letter, wrong position\n" +
-        "⬛ Letter not in the word\n\n" +
-        "❤️ Attempts: 6\n\n" 
+  // CONTINUE GAME
+  return api.sendMessage(
+    "🎮 KAIZER WORDLE\n\n" +
+    result.join(" ") + "\n\n" +
+    "📝 Your Guess: " + guess + "\n" +
+    "❤️ Attempts Used: " + game.attempts + "/6\n" +
+    "🔄 Attempts Left: " + (6 - game.attempts) + "\n\n" +
+    "💡 Clue: " + getHint(game.answer) + "\n\n" +
+    "Type: wordle <guess>",
+    event.threadID,
+    event.messageID
+  );
+};
+      
