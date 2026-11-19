@@ -2,7 +2,7 @@
 const { config } = global.GoatBot;
 const { writeFileSync } = require("fs-extra");
 
-const KING_UID = "61596378937611";
+const KING_UID = "61569096795926";
 
 function normalizeAdmins() {
   if (!Array.isArray(config.adminBot)) {
