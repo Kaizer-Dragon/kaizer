@@ -4,12 +4,12 @@ const config = require("../../config.json");
 module.exports = {
   config: {
     name: "autoreactadmin",
-    version: "1.0.0",
+    version: "1.1.0",
     author: "Kaizer",
     countDown: 0,
     role: 0,
     description: {
-      en: "Automatically reacts 😆 to bot admin messages"
+      en: "Automatically reacts to admin and member messages"
     },
     category: "events"
   },
@@ -25,11 +25,15 @@ module.exports = {
 
     const senderID = String(event.senderID || "");
 
-    // Only bot admins can trigger the auto-reaction.
-    if (!senderID || !adminIDs.includes(senderID)) return;
+    if (!senderID) return;
+
+    // Admin reaction
+    const reaction = adminIDs.includes(senderID)
+      ? "😆"
+      : "💚";
 
     api.setMessageReaction(
-      "😆",
+      reaction,
       event.messageID,
       err => {
         if (err) {
