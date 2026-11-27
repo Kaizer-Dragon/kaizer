@@ -72,7 +72,7 @@ async function getPinterestImageUrl(pinUrl) {
 
 module.exports = {
   config: {
-    name: "sige",
+    name: "sugod",
     aliases: ["setall", "allset"],
     version: "1.1.0",
     author: "Kaizer",
